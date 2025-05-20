@@ -42,8 +42,9 @@ export const atualizarUsuario = (req: Request, res: Response) => {
         return;
     }
 
-    if(!nome || !email){
+    if(!nome && !email){
         res.status(400).json({ mensagem: "Preencha pelo menos um dos campos" })
+        return
     }
 
     const usuario = usuarios.find(u => u.id === id);

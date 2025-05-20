@@ -7,7 +7,7 @@ app.use(express.json());
 
 // Rotas da aplicação 
 
-app.use("api",usurioRoutes);
+app.use("/api",usurioRoutes);
 
 app.listen(3000, () =>{
     console.log(`👌 servidor rodando em http://localhost:3000`);
