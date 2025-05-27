@@ -67,7 +67,7 @@ export class UserController {
         const user = await userRepository.findOneBy({ id: Number(id) });
 
         if (!user) {
-            res.status(404).json({ message: 'Usuário não encontrado' });
+            res.status(404).json({ menssage: 'Usuário não encontrado' });
             return;
         }
 
