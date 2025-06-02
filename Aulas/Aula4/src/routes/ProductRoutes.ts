@@ -9,5 +9,6 @@ router.get("/Produto/:id", controller.show);
 router.post("/Produto", controller.create);
 router.delete("/Produto/:id", controller.delete);
 router.put("/Produto/:id", controller.update);
+router.get("/Produto/:name", controller.shew);
 
 export default router;

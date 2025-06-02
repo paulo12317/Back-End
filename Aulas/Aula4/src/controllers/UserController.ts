@@ -8,7 +8,12 @@ export class UserController {
     // Listar todos os usuários
     async list(req: Request, res: Response) {
         const users = await userRepository.find();
-        res.json(users);
+        let Usuarios = [];
+        for(let i = 0; i < users.length;i++){
+            let u: User = new User(users[i].name,users[i].email,"*********")
+            Usuarios.push(u);
+        }
+        res.json(Usuarios);
         return;
     }
 
@@ -17,9 +22,16 @@ export class UserController {
         const { name, email, password } = req.body;
 
         const user = userRepository.create({ name, email, password });
-        await userRepository.save(user);
+        let gmail = userRepository.findOneBy({ email: String(user.email) })
 
-        res.status(201).json(user);
+        if(!gmail){
+            await userRepository.save(user);
+            res.status(201).json(user);
+            return;
+        }else{
+            res.status(409).json({ messagem: "Email já existente!" });
+            return;
+        }
         return;
     }
 

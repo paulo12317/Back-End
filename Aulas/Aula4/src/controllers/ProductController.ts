@@ -48,6 +48,18 @@ export class ProductController{
         return;
     }
 
+    async shew(req:Request,res:Response){
+        const {name} = req.params;
+        const prod = await productRepository.findOneBy({name:String(name)});
+
+        if(!prod){
+            res.status(404).json({menssagem: "Produto não encontrado!"});
+            return;
+        }
+        res.status(201).json(prod);
+        return;
+    }
+
     async update(req:Request,res:Response){
         const {id} = req.params;
         const {name,price,description} = req.body;
