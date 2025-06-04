@@ -1,5 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
 import { OrderItem } from "./OrderItem";
+import { Favorites } from "./Favorites";
 
 @Entity('dishes')
 export class Dish {
@@ -18,6 +19,9 @@ export class Dish {
 
     @Column({ default: true })
     private _available: boolean;
+
+    @OneToMany(() => Favorites, (favorites) => favorites.dish)
+    favorites!: Favorites;
 
     @OneToMany(() => OrderItem, (orderItem) => orderItem.dish)
     orderItems!: OrderItem[];

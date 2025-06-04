@@ -1,11 +1,12 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
 import { Order } from "./Order";
+import { Favorites } from "./Favorites";
 
 @Entity('users')
 export class User {
 
     @PrimaryGeneratedColumn()
-    private id!: number;
+    id!: number;
 
     @Column({ length: 100, nullable: false })
     private _name: string;
@@ -19,14 +20,21 @@ export class User {
     @Column({ default: "customer" })
     private _role: string;
 
+    @Column({ unique: true, length: 15 })
+    private _phone: number;
+
+    @OneToMany(() => Favorites, (favorites) => favorites.user)
+    favorites!: Favorites;
+
     @OneToMany(() => Order, (order) => order.user)
     orders!: Order[];
 
-    constructor(name:string,email:string,password:string,role:string){
+    constructor(name:string,email:string,password:string,role:string,phone:number){
         this._name = name;
         this._email = email;
         this._password = password;
-        this._role = role
+        this._role = role;
+        this._phone = phone;
 }
 
 
@@ -52,6 +60,14 @@ export class User {
      */
 	public get password(): string {
 		return this._password;
+	}
+
+    /**
+     * Getter phone
+     * @return {number}
+     */
+	public get phone(): number {
+		return this._phone;
 	}
 
     /**
@@ -92,6 +108,14 @@ export class User {
      */
 	public set role(value: string) {
 		this._role = value;
+	}
+
+    /**
+     * Setter role
+     * @param {number} value
+     */
+	public set phone(value: number) {
+		this._phone = value;
 	}
     
 
