@@ -2,7 +2,7 @@ import { Router } from "express";
 import { ProductController } from "../controllers/ProductController";
 
 const router:Router = Router();
-const controller = new ProductController();
+const controller: ProductController = new ProductController();
 
 router.get("/Produto", controller.list);
 router.get("/Produto/:id", controller.show);
