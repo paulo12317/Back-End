@@ -10,11 +10,11 @@ export const AppDataSource = new DataSource({
     type: 'mysql',
     host: DB_HOST,
     port: Number(DB_PORT || "3306"),
-    username: DB_NAME,
+    username: DB_USER,
     password: DB_PASSWORD,
     database: DB_NAME,
     entities: ["scr/models/*.ts"],
     migrations: ["src/migrations/**/*.ts"],
-    synchronize: false,
+    synchronize: true,
     logging: true
 }) 

@@ -5,7 +5,8 @@ import bcrypt from 'bcryptjs'
 
 const userRepository = AppDataSource.getRepository(User);
 
-export class userController{
+export class userController {
+
     async createUser(req:Request, res:Response){
         const {email, password} = req.body;
         
@@ -15,16 +16,21 @@ export class userController{
 
         const verificaEmail = await userRepository.findOneBy({email: email})
 
-        if(!verificaEmail){
-            const user = new User(email,password);
-            const newUser = userRepository.create(user)
-            await userRepository.save(newUser);
-            res.status(201).json({message: "Usuario criado com sucesso",usuario: newUser});
-            return;
-        }else{
-            res.status(409).json({message: "Email já existente."})
+        if(verificaEmail) {
+            res.status(409).json({ message: "E-mail já em uso!" });
             return;
         }
+
+        const user = new User(email, password);
+
+        if(!user) {
+            res.status(500).json({ message: "Erro ao registar usuário" })
+            return
+        }
+
+        await userRepository.save(user);
+        res.status(201).json({ message: "Usuário criado com sucesso", user: user })
+        return;
     }
 
     async Login(req:Request, res: Response){
@@ -49,10 +55,12 @@ export class userController{
         }
 
         res.status(200).json({message: "Login realizado com sucesso!"})
+        return;
     }
 
     async listUser(req: Request, res: Response){
         const user = await userRepository.find();
         res.status(200).json(user);
+        return;
     }
 }
