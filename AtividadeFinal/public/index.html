@@ -4,19 +4,22 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login</title>
-    <link rel="stylesheet" href="./css/style.css" />
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="./css/cadastro.css" />
 </head>
 
 <body>
-    <main class="login">
-        <h2>Login</h2>
-        <form>
-            <input type="email" placeholder="E-mail" required />
-            <input type="password" placeholder="Senha" required />
-            <button type="submit">Entrar</button>
+    <main class="cadastro">
+        <div id="formulario">
+        <h2>Cadastrar</h2>
+        <form id="cadastroForm">
+            <input id="email" type="email" name="email" placeholder="E-mail" required />
+            <input id="senha" type="password" name="password" placeholder="Senha" required />
+            <a href="./login.html">Logar</a>
+            <button type="submit" onsubmit="realizarCadastro()">Cadastrar</button>
         </form>
+        </div>
     </main>
+    <script src="./js/scrypt.js" defer></script>
 </body>
-
 </html>

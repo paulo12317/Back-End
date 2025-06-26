@@ -16,12 +16,7 @@ export class PokemonController {
     async create(req: Request, res: Response) {
         const { name, tipo1,tipo2,level } = req.body;
 
-        let existName = pokemonRepository.findOneBy({ name: String(name) })
-
-        if(existName !== null){
-            res.status(409).json({message: 'Pokemon Já existente'})
-            return;
-        }
+        
 
         if(name == '' || tipo1 =='' || level == null){
             res.status(400).json({message: 'Preencha os campos necessarios: Name, Tipo 1 e Level!'})

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Deus Pokemon</title>
+    <link rel="stylesheet" href="./css/principal.css" />
+</head>
+
+<body>
+    <main>
+        <h1>Deus Pokemon</h1>
+            <div id="pokemonList" class="pokemonList"></div>
+            <form id="criarPokemon">
+                <input type="hidden" name="id" id="hiddenId" />
+                <input type="text" id="namePokemon" placeholder="Nome do Pokemon" name="name" />
+                <input type="text" id="tipo1Pokemon" placeholder="Tipo 1 do Pokemon" name="tipo1" />
+                <input type="text" id="tipo2Pokemon" placeholder="Tipo 2 do Pokemon" name="tipo2" />
+                <input type="number" id="levelPokemon" placeholder="Level do Pokemon" name="level" />
+                <button class="add" onclick="salvarPokemon()">Salvar</button>
+            </form>
+            <div class="card">
+                <table id="tablePokemon" class="tablePokemon">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Tipo 1</th>
+                            <th>Tipo 2</th>
+                            <th>Level</th>
+                            <th>Botões</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+    </main>
+    <div id="messagemSucesso" class="messagem"></div>
+
+    <script src="./js/principal.js"></script>
+</body>
+
+</html>

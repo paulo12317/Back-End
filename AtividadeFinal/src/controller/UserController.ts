@@ -47,9 +47,7 @@ export class userController {
             return;
         }
 
-        const isValid = await bcrypt.compare(password, verificaEmail.password);
-
-        if(!isValid){
+        if(password !== verificaEmail.password){
             res.status(401).json({message: "Senha invalida!"});
             return;
         }
